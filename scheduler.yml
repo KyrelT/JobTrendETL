@@ -1,0 +1,16 @@
+# .github/workflows/scrape.yml
+name: Job Scraper
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # Every Monday
+jobs:
+  run-main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.10'
+      - run: pip install -r requirements.txt
+      - run: python main.py
